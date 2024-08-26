@@ -48,7 +48,7 @@ interface NotificationService {
 // Clase de servicio de notificación
 export class EmailNotificationService implements NotificationService {
     sendNotification(message: string): void {
-        console.log(`Sending email: ${message}`);
+        console.log(`Enviando Correo: ${message}`);
     }
 }
 
