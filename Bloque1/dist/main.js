@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const index_1 = require("./index");
+const notificationService = new index_1.EmailNotificationService();
+const cart = new index_1.ShoppingCart(notificationService);
+const laptop = new index_1.Product(1, 'ASUS TUF F15', 7000);
+const telefono = new index_1.Product(2, 'Chayomi', 3000);
+const television = new index_1.Product(3, '!Smart TV', 10000);
+console.log(television.applyDiscount(25));
+cart.addProduct(laptop, telefono, television);
+cart.checkout();
