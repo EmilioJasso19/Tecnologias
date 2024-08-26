@@ -54,10 +54,11 @@ export class EmailNotificationService implements NotificationService {
 
 // Clase de carrito de compras
 export class ShoppingCart {
-    private products: Product[] = [];
+    private products: Product[];
     private notificationService: NotificationService;
 
     constructor(notificationService: NotificationService) {
+        this.products = []
         this.notificationService = notificationService;
     }
 
@@ -68,10 +69,9 @@ export class ShoppingCart {
     showProducts(): void {
         console.log("Compraste:");
         this.products.forEach((product, index) => {
-            const priceWithDiscount = product.getPriceWithDiscount();
             if (product.getDiscountPercentage() > 0) {
                 console.log(
-                    `${index + 1}. ${product.getName()}, Precio original: $${product.getPrice()} MXN, Precio con descuento: $${priceWithDiscount.toFixed(
+                    `${index + 1}. ${product.getName()}, Precio original: $${product.getPrice()} MXN, Precio con descuento: $${product.getPriceWithDiscount().toFixed(
                         2
                     )} MXN`
                 );
@@ -84,8 +84,9 @@ export class ShoppingCart {
             }
         });
     }
+    
 
-    checkout() {
+    checkout(): void {
         this.notificationService.sendNotification("¡Compra realizada!");
         // Lógica para procesar el pago
         this.showProducts();

@@ -1,6 +1,5 @@
 import {Product, EmailNotificationService, ShoppingCart} from './index'
 
-
 const notificationService = new EmailNotificationService();
 const cart = new ShoppingCart(notificationService);
 
