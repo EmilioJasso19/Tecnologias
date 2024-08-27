@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ShoppingCart = exports.EmailNotificationService = exports.Product = void 0;
+exports.ShoppingCart = exports.SMSNotificationService = exports.EmailNotificationService = exports.Product = void 0;
 // Clase Product
 class Product {
     constructor(id, name, price) {
@@ -36,10 +36,19 @@ exports.Product = Product;
 // Clase de servicio de notificación
 class EmailNotificationService {
     sendNotification(message) {
-        console.log(`Sending email: ${message}`);
+        console.log(`Enviando Correo: ${message}`);
     }
 }
 exports.EmailNotificationService = EmailNotificationService;
+class SMSNotificationService {
+    constructor(phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    sendNotification(message) {
+        console.log(`Enviando SMS: ${message} al número: ${this.phoneNumber}`);
+    }
+}
+exports.SMSNotificationService = SMSNotificationService;
 // Clase de carrito de compras
 class ShoppingCart {
     constructor(notificationService) {
@@ -52,9 +61,8 @@ class ShoppingCart {
     showProducts() {
         console.log("Compraste:");
         this.products.forEach((product, index) => {
-            const priceWithDiscount = product.getPriceWithDiscount();
             if (product.getDiscountPercentage() > 0) {
-                console.log(`${index + 1}. ${product.getName()}, Precio original: $${product.getPrice()} MXN, Precio con descuento: $${priceWithDiscount.toFixed(2)} MXN`);
+                console.log(`${index + 1}. ${product.getName()}, Precio original: $${product.getPrice()} MXN, Precio con descuento: $${product.getPriceWithDiscount().toFixed(2)} MXN`);
             }
             else {
                 console.log(`${index + 1}. ${product.getName()}, por: $${product
@@ -64,8 +72,8 @@ class ShoppingCart {
         });
     }
     checkout() {
-        // Lógica para procesar el pago
         this.notificationService.sendNotification("¡Compra realizada!");
+        // Lógica para procesar el pago
         this.showProducts();
     }
 }

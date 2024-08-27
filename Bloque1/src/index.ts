@@ -52,6 +52,18 @@ export class EmailNotificationService implements NotificationService {
     }
 }
 
+export class SMSNotificationService implements NotificationService {
+    private phoneNumber: string;
+
+    constructor(phoneNumber: string) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    sendNotification(message: string): void {
+        console.log(`Enviando SMS: ${message} al número: ${this.phoneNumber}`);
+    }
+}
+
 // Clase de carrito de compras
 export class ShoppingCart {
     private products: Product[];
