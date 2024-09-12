@@ -100,7 +100,6 @@ export class ShoppingCart {
 
     checkout(): void {
         this.notificationService.sendNotification("¡Compra realizada!");
-        // Lógica para procesar el pago
         this.showProducts();
     }
 }
