@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const DatabaseNotification_1 = require("./DatabaseNotification");
+const EmailNotification_1 = require("./EmailNotification");
+const PhoneNotification_1 = require("./PhoneNotification");
+const dbNotification = new DatabaseNotification_1.DatabaseNotification(1);
+const emailNotification = new EmailNotification_1.EmailNotification('henry@gay.com');
+const phoneNotification = new PhoneNotification_1.PhoneNotification('123-456-7890');
+dbNotification.sendNotification('new user registered');
+emailNotification.sendNotification('confirm your email');
+phoneNotification.sendNotification('this is your code verification: 6789');
+let notificationGlobalHistory = [...dbNotification.getNotificationHistory(), ...emailNotification.getNotificationHistory(), ...phoneNotification.getNotificationHistory()];
+console.log(notificationGlobalHistory);

@@ -1,4 +1,4 @@
 export interface INotification {
-    notificationHistory: Array<{msg: string, type: INotification}>;
+    notificationHistory: {msg: string, type: string}[];
     sendNotification(message: string): void;
 }
