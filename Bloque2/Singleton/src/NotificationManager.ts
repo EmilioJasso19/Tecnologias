@@ -2,7 +2,7 @@ import {INotification} from './INotification'
 
 export class NotificationManager {
     private static instance: NotificationManager;
-    private notificationHistory: Array<{ msg: string, type: INotification }> = [];
+    private notificationHistory: { msg: string, type: string }[] = [];
 
     private constructor() {}
 
@@ -17,10 +17,10 @@ export class NotificationManager {
 
     public sendNotification(message: string, notifier: INotification): void {
         notifier.sendNotification(message);
-        this.notificationHistory.push({msg: message, type: notifier});
+        this.notificationHistory.push({msg: message, type: notifier.constructor.name});
     }
 
-    public getNotificationHistory(): Array<{ msg: string, type: INotification }> {
+    public getNotificationHistory(): { msg: string, type: string }[] {
         return this.notificationHistory;
     }
 }

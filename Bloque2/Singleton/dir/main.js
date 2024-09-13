@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const DatabaseNotification_1 = require("./DatabaseNotification");
+const EmailNotification_1 = require("./EmailNotification");
+const NotificationManager_1 = require("./NotificationManager");
+const PhoneNotification_1 = require("./PhoneNotification");
+const LetterNotification_1 = require("./LetterNotification");
+const notificationManager = NotificationManager_1.NotificationManager.getInstance();
+const notificationManager2 = NotificationManager_1.NotificationManager.getInstance();
+const dbNotification = new DatabaseNotification_1.DatabaseNotification(1);
+const emailNotification = new EmailNotification_1.EmailNotification("cor@eo.mx");
+const phoneNotification = new PhoneNotification_1.PhoneNotification("123");
+const letterNotification = new LetterNotification_1.LetterNotification();
+notificationManager.sendNotification('New user registered!', dbNotification);
+notificationManager.sendNotification('Welcome email to the new user', emailNotification);
+notificationManager2.sendNotification('SMS to notify the new user', phoneNotification);
+NotificationManager_1.NotificationManager.getInstance().sendNotification('Letter to notify the new user', letterNotification);
+console.log('Notification history:', notificationManager.getNotificationHistory());
